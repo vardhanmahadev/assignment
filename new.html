@@ -5,7 +5,8 @@
     <body>    
         <link href = "registration.css" type = "text/css" rel = "stylesheet" />    
         <h2>Sign Up</h2>    
-        <form name = "form1" action="index1.php" method = "post" enctype = "multipart/form-data" >   
+        <form name = "form1" action="index1.php" method = "post" enctype = "multipart/form-data" onSubmit="return ValidateForm(this)">
+>   
             <div class = "container">    
                 <div class = "form_group">    
                     <label>First Name:</label>    
@@ -21,18 +22,44 @@
                 </div>    
                 <div class = "form_group">    
                     <label>Password:</label>    
-                    <input type = "password" name = "password" value = "" required/>    
+                    <input type = "password" name = "password" value = "" />    
                 </div>
 				<div class = "form_group">    
                     <label>Confirm Password:</label>    
-                    <input type = "password" name = "confirmpassword" value = "" required/>    
+                    <input type = "password" name = "confirmpassword" value = "" />    
                 </div>
 				
 				<div>
-					<input type="submit" value="Register">
+					<input type="submit" name="submit" value="Register">
 				</div>				
 		
             </div>    
         </form>    
-    </body>    
+     
+ <script language="javaScript" type="text/javascript">
+          
+            // Function to check Whether both passwords 
+            // is same or not. 
+      function ValidateForm(f)
+{
+   password1 = form1.password.value; 
+                password2 = form1.confirmpassword.value; 
+  
+                // If password not entered 
+                if (password1 == '') 
+                    alert ("Please enter Password"); 
+                      
+                // If confirm password not entered 
+                else if (password2 == '') 
+                    alert ("Please enter confirm password"); 
+                      
+                // If Not same return False.     
+                else if (password1 != password2) { 
+                    alert ("\nPassword did not match: Please try again...") 
+                    return false; 
+                }
+       }
+      
+        </script> 
+		</body>
 </html>    
