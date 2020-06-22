@@ -6,14 +6,15 @@
         <link href = "registration.css" type = "text/css" rel = "stylesheet" />    
         <h2>Sign Up</h2>    
         <form name = "form1" action="index1.php" method = "post" enctype = "multipart/form-data" onSubmit="return ValidateForm(this)">
+
             <div class = "container">    
                 <div class = "form_group">    
                     <label>First Name:</label>    
-                    <input type = "text" name = "fname" value = "" required/>    
+                    <input type = "text" name = "firstname" value = "" required/>    
                 </div>    
                 <div class = "form_group">    
                     <label>Last Name:</label>    
-                    <input type = "text" name = "lname" value = "" required />    
+                    <input type = "text" name = "lastname" value = "" required />    
                 </div>    
                 <div class = "form_group">    
                     <label>User Name:</label>    
@@ -21,11 +22,11 @@
                 </div>    
                 <div class = "form_group">    
                     <label>Password:</label>    
-                    <input type = "password" name = "password" value = "" />    
+                    <input type = "password" name = "password" value = "" required/>    
                 </div>
 				<div class = "form_group">    
                     <label>Confirm Password:</label>    
-                    <input type = "password" name = "confirmpassword" value = "" />    
+                    <input type = "password" name = "confirmpassword" value = "" required/>    
                 </div>
 				
 				<div>
@@ -39,13 +40,28 @@
           
             // Function to check Whether both passwords 
             // is same or not. 
-      function ValidateForm(f)
-{
-   password1 = form1.password.value; 
-                password2 = form1.confirmpassword.value; 
+     function ValidateForm(f)
+{				firstname= form1.firstname.value;
+				lastname= form1.lastname.value;
+				usernamename= form1.username.value;
+				password1 = form1.password.value; 
+                password2 = form1.confirmpassword.value;
+				var pass= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
   
+				// If First Name not entered
+				if (firstname == '') 
+                    alert ("Please enter Firstname");
+					
+				// if Last Name not entered
+				else if (lastname == '') 
+                    alert ("Please enter Last Name");				
+					
+				// If Username not entered
+				else if (username == '') 
+                    alert ("Please enter Username");
+				
                 // If password not entered 
-                if (password1 == '') 
+                else if (password1 == '') 
                     alert ("Please enter Password"); 
                       
                 // If confirm password not entered 
@@ -53,9 +69,13 @@
                     alert ("Please enter confirm password"); 
                       
                 // If Not same return False.     
-                else if (password1 != password2) { 
-                    alert ("\nPassword did not match: Please try again...") 
-                    return false; 
+                else if (password1.value.match(pass)) {
+					if(password1 == password2){
+                    return true; 
+					}
+					else {
+					alert (" Your passwords didn't match and check whether entered password contains atleast on uppercase character, one lower case character, one special character and length range from 6 to 20 charcters"; 
+					}
                 }
        }
       
