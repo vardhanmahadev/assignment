@@ -4,16 +4,18 @@
 	$firstname = $_POST['firstname'];
 	$lastname = $_POST['lastname'];
 	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$confirmpassword = $_POST['confirmpassword'];
+	$pass = $_POST['password'];
+	$password=md5($pass);
+	$cpass = $_POST['confirmpassword'];
+	$confirmpassword=md5($cpass);
 	
 	// Database validation
 	if(preg_match("/^[ a-zA-Z ]*$/",$firstname)){
 		if(preg_match("/^[ a-zA-Z ]*$/",$lastname)){
 			$username = filter_var($username, FILTER_VALIDATE_EMAIL); 
 				if($username==true){
-					if(preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/",$password)){
-					if($password==$confirmpassword){
+					if(preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/",$pass)){
+					if($pass==$cpass){
 						// Database connection
 							$conn = new mysqli('localhost','root','','test');
 							if($conn->connect_error){
